@@ -2,15 +2,44 @@ package com.bank.pojo;
 
 public class Customer {
 	private int customerId;
-	private int bankId;
+
 	private int addressId;
 	private String customerFirstName;
 	private String customerLastName;
 	private int accountNumber;
+	private long phoneNumber;
+	private String mailId;
 	private double customerCurrentBal;
-	private Address address;
-	private boolean isActive;
-	private boolean isAlreadyExist;
+	private double depositeAmount;
+	private double withDrawAmount;
+	private Address address;// has-a-relation
+	private String getCurrentBalance;
+	private int bankId;
+	private int addrId;
+	private int is_enable;
+
+	public Customer() {
+		super();
+	}
+
+	public Customer(int customerId, int bankId, int addressId, String customerFirstName, String customerLastName,
+			int accountNumber, long phoneNumber, String mailId, double customerCurrentBal, double depositeAmount,
+			double withDrawAmount, Address address, String getCurrentBalance) {
+		super();
+		this.customerId = customerId;
+		this.bankId = bankId;
+		this.addressId = addressId;
+		this.customerFirstName = customerFirstName;
+		this.customerLastName = customerLastName;
+		this.accountNumber = accountNumber;
+		this.phoneNumber = phoneNumber;
+		this.mailId = mailId;
+		this.customerCurrentBal = customerCurrentBal;
+		this.depositeAmount = depositeAmount;
+		this.withDrawAmount = withDrawAmount;
+		this.address = address;
+		this.getCurrentBalance = getCurrentBalance;
+	}
 
 	public int getCustomerId() {
 		return customerId;
@@ -18,14 +47,6 @@ public class Customer {
 
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
-	}
-
-	public int getBankId() {
-		return bankId;
-	}
-
-	public void setBankId(int bankId) {
-		this.bankId = bankId;
 	}
 
 	public int getAddressId() {
@@ -60,6 +81,38 @@ public class Customer {
 		this.accountNumber = accountNumber;
 	}
 
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getMailId() {
+		return mailId;
+	}
+
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
+	}
+
+	public double getDepositeAmount() {
+		return depositeAmount;
+	}
+
+	public void setDepositeAmount(double depositeAmount) {
+		this.depositeAmount = depositeAmount;
+	}
+
+	public double getWithDrawAmount() {
+		return withDrawAmount;
+	}
+
+	public void setWithDrawAmount(double withDrawAmount) {
+		this.withDrawAmount = withDrawAmount;
+	}
+
 	public double getCustomerCurrentBal() {
 		return customerCurrentBal;
 	}
@@ -76,28 +129,50 @@ public class Customer {
 		this.address = address;
 	}
 
-	public boolean isActive() {
-		return isActive;
+	public String getGetCurrentBalance() {
+		return getCurrentBalance;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setGetCurrentBalance(String getCurrentBalance) {
+		this.getCurrentBalance = getCurrentBalance;
 	}
 
-	public boolean isAlreadyExist() {
-		return isAlreadyExist;
+	public int getBankId() {
+		return bankId;
 	}
 
-	public void setAlreadyExist(boolean isAlreadyExist) {
-		this.isAlreadyExist = isAlreadyExist;
+	public void setBankId(int bankId) {
+		this.bankId = bankId;
+	}
+
+	public int getAddrId() {
+		return addrId;
+	}
+
+	public void setAddrId(int addrId) {
+		this.addrId = addrId;
+	}
+	
+
+	public int getIs_enable() {
+		return is_enable;
+	}
+
+	public void setIs_enable(int is_enable) {
+		this.is_enable = is_enable;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", bankId=" + bankId + ", addressId=" + addressId
-				+ ", customerFirstName=" + customerFirstName + ", customerLastName=" + customerLastName
-				+ ", accountNumber=" + accountNumber + ", customerCurrentBal=" + customerCurrentBal + ", address="
-				+ address + " isActive=" + isActive + "]";
+		return "Customer [customerId=" + customerId + ", addressId=" + addressId + ", customerFirstName="
+				+ customerFirstName + ", customerLastName=" + customerLastName + ", accountNumber=" + accountNumber
+				+ ", phoneNumber=" + phoneNumber + ", mailId=" + mailId + ", customerCurrentBal=" + customerCurrentBal
+				+ ", depositeAmount=" + depositeAmount + ", withDrawAmount=" + withDrawAmount + ", address=" + address
+				+ ", getCurrentBalance=" + getCurrentBalance + ", bankId=" + bankId + ", addrId=" + addrId
+				+ ", is_enable=" + is_enable + "]";
 	}
+
+
+	
 
 }
