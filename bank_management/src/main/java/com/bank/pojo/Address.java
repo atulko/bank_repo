@@ -5,7 +5,7 @@ public class Address {
 	private int flatNumber;
 	private String landMark;
 	private String city;
-	private String distric;
+	private String district;
 	private String state;
 	private int pinNumber;
 	private String country;
@@ -43,12 +43,12 @@ public class Address {
 		this.city = city;
 	}
 
-	public String getDistric() {
-		return distric;
+	public String getDistrict() {
+		return district;
 	}
 
-	public void setDistric(String distric) {
-		this.distric = distric;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 
 	public String getState() {
@@ -78,7 +78,7 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", flatNumber=" + flatNumber + ", landMark=" + landMark + ", city="
-				+ city + ", distric=" + distric + ", state=" + state + ", pinNumber=" + pinNumber + ", country="
+				+ city + ", district=" + district + ", state=" + state + ", pinNumber=" + pinNumber + ", country="
 				+ country + "]";
 	}
 
