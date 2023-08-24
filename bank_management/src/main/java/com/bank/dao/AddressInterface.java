@@ -4,7 +4,7 @@ import java.util.List;
 import com.bank.pojo.Address;
 
 public interface AddressInterface {
-	public List<Address> getaddressList();
+	public List<Address> getAddressList();
 
 	public int saveAddress(Address address);
 
