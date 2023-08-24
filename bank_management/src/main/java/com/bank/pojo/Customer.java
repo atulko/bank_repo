@@ -84,20 +84,20 @@ public class Customer {
 		this.isActive = isActive;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", bankId=" + bankId + ", addressId=" + addressId
-				+ ", customerFirstName=" + customerFirstName + ", customerLastName=" + customerLastName
-				+ ", accountNumber=" + accountNumber + ", customerCurrentBal=" + customerCurrentBal + ", address="
-				+ address + " isActive=" + isActive + "]";
-	}
-
 	public boolean isAlreadyExist() {
 		return isAlreadyExist;
 	}
 
 	public void setAlreadyExist(boolean isAlreadyExist) {
 		this.isAlreadyExist = isAlreadyExist;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", bankId=" + bankId + ", addressId=" + addressId
+				+ ", customerFirstName=" + customerFirstName + ", customerLastName=" + customerLastName
+				+ ", accountNumber=" + accountNumber + ", customerCurrentBal=" + customerCurrentBal + ", address="
+				+ address + " isActive=" + isActive + "]";
 	}
 
 }
