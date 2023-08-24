@@ -19,6 +19,7 @@ public class AddressImpl implements AddressInterface {
 	public static final String updateAddress = "update address set city=? where id=?";
 	public static final String deleteAddress = "delete from address where id=?";
 	public static final String disableAddress = "update address set isEnable=? where id=?";
+	public static final String isAddressEnable = "select isEnable from address where id=?";
 
 	@Override
 	public List<Address> getAddressList() {
@@ -154,26 +155,129 @@ public class AddressImpl implements AddressInterface {
 
 	@Override
 	public Address updateAddress(Address address, int id) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement preset = null;
+		int result = 0;
+		try {
+			conn = DBConnection.getConnection();
+			preset = conn.prepareStatement(updateAddress, preset.RETURN_GENERATED_KEYS);
+			preset.setString(1, address.getCity());
+			preset.setInt(2, id);
+
+			result = preset.executeUpdate();
+			if (result > 0) {
+				System.out.println("Address updated successfully......");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (preset != null) {
+				try {
+					preset.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void deleteAddress(int id) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement preset = null;
 
+		int result = 0;
+		int pos = 0;
+		try {
+			conn = DBConnection.getConnection();
+			preset = conn.prepareStatement(deleteAddress, preset.RETURN_GENERATED_KEYS);
+			preset.setInt(++pos, id);
+			result = preset.executeUpdate();
+			if (result > 0)
+				System.out.println("Address deleted....");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (preset != null) {
+				try {
+					preset.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
 	public boolean disableAddress(int disable, int id) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement preset = null;
+
+		int result = 0;
+		int pos = 0;
+		try {
+			conn = DBConnection.getConnection();
+			preset = conn.prepareStatement(disableAddress, preset.RETURN_GENERATED_KEYS);
+			preset.setInt(++pos, disable);
+			preset.setInt(++pos, id);
+			result = preset.executeUpdate();
+			if (result > 0)
+				System.out.println("Address disabled.....");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (preset != null) {
+				try {
+					preset.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean isAddressEnable(int id) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement preset = null;
+		int pos = 0;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			preset = conn.prepareStatement(isAddressEnable, preset.RETURN_GENERATED_KEYS);
+			preset.setInt(++pos, id);
+			rs = preset.executeQuery();
+			while (rs.next()) {
+				int v = rs.getInt("isEnable");
+				System.out.println(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
-
 }
