@@ -45,14 +45,14 @@ public class BankMain {
 		//custImpl.saveCustomer(cust1);
 		//custImpl.deleteCustomer(cust1);
 		//custImpl.disableCustomer(0, 1);
-		custImpl.getCustomerCurrentBalance(998876);
+		//custImpl.getCustomerCurrentBalance(998876);
 		//custImpl.isCustomerEnable(4, 0);
 		//custImpl.updateCustomer(cust2, 1);
 		//custImpl.isCustomerExist(cust2);
 		//custImpl.depositeAmount(99000, 1000);
 		//custImpl.withdrawAmount(99000, 500);
 		
-		//custImpl.transferAmount(2, 15, 5000);
+		custImpl.transferAmount(2, 15, 5000);
 	}
 
 }
