@@ -1,9 +1,11 @@
 package com.bank.daoimpl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.bank.dao.AddressInterface;
@@ -68,8 +70,56 @@ public class AddressImpl implements AddressInterface {
 
 	@Override
 	public int saveAddress(Address address) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = null;
+		PreparedStatement preset = null;
+		int result = 0;
+		int pos = 0;
+		int addressId = 0;
+		ResultSet rs = null;
+		boolean flag = isAddressExists(address);
+		if (!flag) {
+
+			try {
+				conn = DBConnection.getConnection();
+				conn.setAutoCommit(false);
+				preset = conn.prepareStatement(saveAddress, preset.RETURN_GENERATED_KEYS);
+				preset.setInt(++pos, address.getFlatNumber());
+				preset.setString(++pos, address.getLandMark());
+				preset.setString(++pos, address.getCity());
+				preset.setString(++pos, address.getDistrict());
+				preset.setNString(++pos, address.getState());
+				preset.setString(++pos, address.getCountry());
+				preset.setInt(++pos, address.getPinNumber());
+				preset.setInt(++pos, address.getIsEnable());
+				preset.executeUpdate();
+				rs = preset.getGeneratedKeys();
+
+				if (rs.next()) {
+					conn.commit();
+					addressId = rs.getInt(1);
+					System.out.println(address.getCity() + " inserted into DB with " + addressId);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				if (preset != null) {
+					try {
+						preset.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return addressId;
+
 	}
 
 	@Override
@@ -80,8 +130,26 @@ public class AddressImpl implements AddressInterface {
 
 	@Override
 	public boolean isAddressExists(Address address) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		Address existingAddress = null;
+		List<Address> addressList = null;
+
+		try {
+			addressList = getAddressList();
+			Iterator itr = addressList.iterator();
+			while (itr.hasNext()) {
+				existingAddress = (Address) itr.next();
+				if ((existingAddress.getLandMark().equalsIgnoreCase(address.getLandMark()))
+						&& (existingAddress.getCity().equalsIgnoreCase(address.getCity()))) {
+					result = true;
+					// System.out.println("Address already exists");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@Override

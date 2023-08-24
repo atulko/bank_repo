@@ -9,7 +9,7 @@ public class Address {
 	private String state;
 	private int pinNumber;
 	private String country;
-	
+	private int isEnable;
 
 	public int getAddressId() {
 		return addressId;
@@ -75,11 +75,15 @@ public class Address {
 		this.country = country;
 	}
 
+	public int getIsEnable() {
+		return isEnable;
+	}
+
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", flatNumber=" + flatNumber + ", landMark=" + landMark + ", city="
 				+ city + ", district=" + district + ", state=" + state + ", pinNumber=" + pinNumber + ", country="
-				+ country + "]";
+				+ country + ", isEnable=" + isEnable + "]";
 	}
 
 }
