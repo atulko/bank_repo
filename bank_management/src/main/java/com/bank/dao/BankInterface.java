@@ -6,7 +6,7 @@ import com.bank.pojo.Bank;
 
 public interface BankInterface {
 
-	public List<Bank> getbankList();
+	public List<Bank> getBankList();
 
 	public Bank saveBank(Bank bank);
 
@@ -17,6 +17,8 @@ public interface BankInterface {
 	public Bank updateBank(Bank bank, int id, String bank_name);
 
 	public void deleteBank(int id);
+
+	public boolean isBankEnable(int id, int isEnable);
 
 	public boolean disableBank(int disable, int id);
 
