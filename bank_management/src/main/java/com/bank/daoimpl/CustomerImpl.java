@@ -13,7 +13,7 @@ import com.bank.pojo.Customer;
 
 public class CustomerImpl implements CustomerInterface {
 	private static final String getAllCustomer = "select * from customer";
-	private static final String saveCustomer = "insert into customer(first_name,last_name,account_number,current_balance,mobile_number,bank_id,addr_id,is_enable)values(?,?,?,?,?,?,?,?)";
+	public static final String saveCustomer = "insert into customer(firstName,lastName,accountNumber,currentBalance,mobileNumber,bank_id,addr_id,isEnable,pin,nomineeId) values(?,?,?,?,?,?,?,?,?,?)";
 	public static final String getUpdateCustomer = "Update  customer set first_name=? where id=? ";
 	public static final String getDeleteCustomer = "delete from customer where id=?";
 	public static final String getDisableCustomer = "update customer set is_enable =? where id =?";
@@ -90,6 +90,7 @@ public class CustomerImpl implements CustomerInterface {
 			int result = 0;
 			int pos = 0;
 			int addressId = 0;
+			int nomineeId=0;
 			try {
 				conn = DBConnection.getConnection();
 				conn.setAutoCommit(false);
@@ -103,10 +104,14 @@ public class CustomerImpl implements CustomerInterface {
 				preSts.setInt(++pos, customer.getBankId());
 
 				AddressImpl impl = new AddressImpl();
-				//addressId = impl.saveAddress(customer.getAddress());
-				preSts.setInt(++pos, customer.getAddressId());
+				addressId = impl.saveAddress(customer.getAddress());
+				preSts.setInt(++pos, addressId);
 				//preSts.setInt(++pos, addressId);
 				preSts.setInt(++pos, customer.getIs_enable());
+				preSts.setInt(++pos, customer.getPin());
+				NomineeImpl n=new NomineeImpl();
+				nomineeId=n.addNominee(customer.getNomineeAccount());
+				preSts.setInt(++pos, nomineeId);
 				result = preSts.executeUpdate();
 				if (result > 0) {
 					conn.commit();

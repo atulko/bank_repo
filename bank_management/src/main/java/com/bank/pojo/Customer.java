@@ -1,5 +1,7 @@
 package com.bank.pojo;
 
+import java.util.ArrayList;
+
 public class Customer {
 	private int customerId;
 
@@ -17,6 +19,8 @@ public class Customer {
 	private int bankId;
 	private int addrId;
 	private int is_enable;
+	private int pin;
+	private ArrayList<Integer> nomineeAccount;
 
 	public Customer() {
 		super();
@@ -160,6 +164,23 @@ public class Customer {
 
 	public void setIs_enable(int is_enable) {
 		this.is_enable = is_enable;
+	}
+	
+	
+	public int getPin() {
+		return pin;
+	}
+
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+
+	public ArrayList<Integer> getNomineeAccount() {
+		return nomineeAccount;
+	}
+
+	public void setNomineeAccount(ArrayList<Integer> nomineeAccount) {
+		this.nomineeAccount = nomineeAccount;
 	}
 
 	@Override

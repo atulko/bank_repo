@@ -9,7 +9,7 @@ public class DBConnection {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String url = "jdbc:mysql://localhost:3306/bank_db";
 	private static String username = "root";
-	private static String password = "root";
+	private static String password = "Tejask21@";
 
 	public static Connection getConnection() throws Exception {
 		Connection conn = null;

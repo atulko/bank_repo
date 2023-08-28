@@ -79,6 +79,10 @@ public class Address {
 		return isEnable;
 	}
 
+	public void setIsEnable(int isEnable) {
+		this.isEnable = isEnable;
+	}
+
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", flatNumber=" + flatNumber + ", landMark=" + landMark + ", city="
